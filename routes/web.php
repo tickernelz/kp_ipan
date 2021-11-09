@@ -1,13 +1,13 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AutoCompleteController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriBukuController;
 use App\Http\Controllers\PinjamController;
-use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Auth
-Route::get('auth/', [AuthController::class, 'formlogin'])->name('auth.index');
+Route::get('/', [AuthController::class, 'formlogin'])->name('auth.index');
 Route::get('auth/login', [AuthController::class, 'formlogin'])->name('auth.login');
 Route::post('auth/login', [AuthController::class, 'login'])->name('auth.post.login');
 
@@ -32,6 +32,10 @@ Route::get('/auto-buku', [AutoCompleteController::class, 'buku'])->name('auto.bu
 
 // Autocomplete ISBN
 Route::get('/auto-isbn', [AutoCompleteController::class, 'isbn'])->name('auto.isbn');
+
+// Daftar Anggota
+Route::get('daftar', [AuthController::class, 'daftar_index'])->name('auth.daftar.index');
+Route::post('daftar/post', [AuthController::class, 'daftar'])->name('auth.daftar.post');
 
 // Route Akses
 Route::group(['middleware' => 'auth'], function () {
@@ -84,7 +88,6 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['middleware' => ['can:melakukan peminjaman']], function () {
-        Route::get('/', [PinjamController::class, 'cek'])->name('cek.pinjam');
         Route::get('pinjam/', [PinjamController::class, 'index'])->name('index.pinjam');
         Route::post('pinjam/post', [PinjamController::class, 'pinjam'])->name('post.pinjam');
         Route::get('pinjam/list', [PinjamController::class, 'list'])->name('list.pinjam');

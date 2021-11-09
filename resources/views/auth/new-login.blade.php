@@ -53,6 +53,9 @@
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
+                            <div class="w-50 text-md-right">
+                                <a href="{{ route('auth.daftar.index') }}" style="color: #fff">Daftar Anggota</a>
+                            </div>
                         </div>
                     </form>
                 </div>

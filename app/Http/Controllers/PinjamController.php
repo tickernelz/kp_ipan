@@ -8,21 +8,6 @@ use Illuminate\Http\Request;
 
 class PinjamController extends Controller
 {
-    public function cek()
-    {
-        if (Auth::check() && Auth::user()->hasAnyRole(['Super Admin', 'Admin'])) { // true sekalian session field di users nanti bisa dipanggil via Auth
-            //Login Success
-            return redirect()->route('admin.home');
-        }
-
-        if (Auth::check() && Auth::user()->hasAnyRole(['Siswa'])) {
-            //Login Success
-            return redirect()->route('index.pinjam');
-        }
-
-        return view('auth.new-login');
-    }
-
     public function index()
     {
         // Config
@@ -33,10 +18,10 @@ class PinjamController extends Controller
         ];
 
         // Get Data
-        $siswa = Auth::user()->siswa;
+        $anggota = Auth::user()->anggota;
 
         return view('pinjam.index', [
-            'siswa' => $siswa,
+            'anggota' => $anggota,
             'conf_tgl' => $conf_tgl,
         ]);
     }
@@ -44,8 +29,8 @@ class PinjamController extends Controller
     public function list()
     {
         // Get Data
-        $siswa = Auth::user()->siswa;
-        $data = Transaksi::with('siswa')->where('siswa_id', $siswa->id)->get();
+        $anggota = Auth::user()->anggota;
+        $data = Transaksi::with('anggota')->where('anggota_id', $anggota->id)->get();
 
         $heads = [
             '#',
@@ -65,7 +50,7 @@ class PinjamController extends Controller
 
         return view('pinjam.pinjam', [
             'data' => $data,
-            'siswa' => $siswa,
+            'anggota' => $anggota,
             'heads' => $heads,
             'config' => $config,
         ]);
@@ -81,7 +66,7 @@ class PinjamController extends Controller
 
         // Kirim Data ke Database
         $data = new Transaksi;
-        $data->siswa_id = Auth::user()->siswa->id;
+        $data->anggota_id = Auth::user()->anggota->id;
         $data->isbn = $request->input('isbn');
         $data->buku = $request->input('buku');
         $data->tanggal_pinjam = now();
