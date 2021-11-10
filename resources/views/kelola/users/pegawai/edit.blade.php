@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Edit Admin')
+@section('title', 'Edit Pegawai')
 
 @section('content_header')
-    <h1>Edit Admin ({{ $data->nama }})</h1>
+    <h1>Edit Pegawai ({{ $data->nama }})</h1>
 @stop
 
 @section('plugins.Select2', true)
@@ -15,7 +15,7 @@
                 <h3 class="card-title p-3">Form Edit</h3>
                 <ul class="nav nav-pills ml-auto p-2">
                     <li class="nav-item">
-                        <a href="{{ redirect()->getUrlGenerator()->route('index.user.admin') }}">
+                        <a href="{{ redirect()->getUrlGenerator()->route('index.user.pegawai') }}">
                             <button type="button" class="btn btn-primary">Kembali</button>
                         </a>
                     </li>
@@ -44,7 +44,7 @@
                     </div>
                 @endif
                 @csrf
-                    <x-adminlte-input value="{{ $data->nip }}" name="nip" label="NIP" type="number" placeholder="Masukkan NIP..."/>
+                    <x-adminlte-input value="{{ $data->nip }}" name="nip" label="NIP*" type="number" placeholder="Masukkan NIP..."/>
                     <x-adminlte-input value="{{ $data->user->username }}" name="username" label="Username*"
                                       placeholder="Masukkan Username..."/>
                     <x-adminlte-input value="{{ $data->nama }}" name="nama" label="Nama"

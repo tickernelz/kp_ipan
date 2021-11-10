@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
+use App\Models\Pegawai;
 use App\Models\User;
-use Crypt;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 
-class AdminController extends Controller
+class PegawaiController extends Controller
 {
     public function index()
     {
         // Get Data
-        $data = Admin::with('user')->get();
+        $data = Pegawai::with('user')->get();
 
-        return view('kelola.users.admin.index', [
+        return view('kelola.users.pegawai.index', [
             'data' => $data,
         ]);
     }
@@ -23,16 +21,17 @@ class AdminController extends Controller
     public function tambah_index()
     {
 
-        return view('kelola.users.admin.tambah', [
+        return view('kelola.users.pegawai.tambah', [
+            'roles' => $roles,
         ]);
     }
 
     public function edit_index(int $id)
     {
         // Get Data
-        $data = Admin::with('user')->find($id);
+        $data = Pegawai::with('user')->find($id);
 
-        return view('kelola.users.admin.edit', [
+        return view('kelola.users.pegawai.edit', [
             'data' => $data,
         ]);
     }
@@ -40,7 +39,7 @@ class AdminController extends Controller
     public function tambah(Request $request)
     {
         $request->validate([
-            'nip' => 'numeric|nullable|unique:admins',
+            'nip' => 'required|numeric|unique:pegawais',
             'username' => 'required|string|unique:users',
             'nama' => 'required|string',
             'hp' => 'numeric|nullable',
@@ -52,24 +51,24 @@ class AdminController extends Controller
         $user->username = $request->input('username');
         $user->password = bcrypt($request->input('password'));
         $user->save();
-        $user->assignRole('Admin');
+        $user->assignRole('Pegawai');
 
-        $admin = new Admin;
-        $admin->nip = $request->input('nip');
-        $admin->nama = $request->input('nama');
-        $admin->hp = $request->input('nama');
-        $admin->user()->associate($user);
-        $admin->save();
+        $pegawai = new Pegawai;
+        $pegawai->nip = $request->input('nip');
+        $pegawai->nama = $request->input('nama');
+        $pegawai->hp = $request->input('nama');
+        $pegawai->user()->associate($user);
+        $pegawai->save();
 
         return back()->with('success', 'Data Berhasil Ditambahkan!');
     }
 
     public function edit(Request $request, int $id)
     {
-        $data = Admin::with('user')->find($id);
+        $data = Pegawai::with('user')->find($id);
 
         $request->validate([
-            'nip' => 'numeric|nullable|unique:admins,nip,'.$data->id,
+            'nip' => 'required|numeric|unique:pegawais,nip,'.$data->id,
             'username' => 'required|string|unique:users,username,'.$data->user->id,
             'nama' => 'required|string',
             'hp' => 'numeric|nullable',
@@ -86,16 +85,16 @@ class AdminController extends Controller
         }
         $data->user->save();
         $data->save();
-        $data->user->assignRole('Admin');
+        $data->user->assignRole('Pegawai');
 
         return back()->with('success', 'Data Berhasil Diubah!');
     }
 
     public function hapus(int $id)
     {
-        Admin::where('user_id', $id)->delete();
+        Pegawai::where('user_id', $id)->delete();
         User::find($id)->delete();
 
-        return redirect()->route('index.user.admin');
+        return redirect()->route('index.user.pegawai');
     }
 }

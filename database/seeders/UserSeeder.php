@@ -17,12 +17,12 @@ class UserSeeder extends Seeder
         User::create([
             'username' => 'ipan1',
             'password' => bcrypt('123'),
-        ])->assignRole('Super Admin');
+        ])->assignRole('Admin');
 
         User::create([
             'username' => 'ipan2',
             'password' => bcrypt('123'),
-        ])->assignRole('Admin');
+        ])->assignRole('Pegawai');
 
         User::create([
             'username' => 'ipan3',

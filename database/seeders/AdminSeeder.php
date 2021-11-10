@@ -20,12 +20,5 @@ class AdminSeeder extends Seeder
             'nama' => 'Dani',
             'hp' => '08123345678',
         ]);
-
-        Admin::create([
-            'user_id' => '2',
-            'nip' => '4324352',
-            'nama' => 'Yanto',
-            'hp' => '08123452678',
-        ]);
     }
 }

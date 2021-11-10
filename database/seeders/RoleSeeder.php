@@ -27,7 +27,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'melakukan peminjaman']);
 
         $role1 = Role::create([
-            'name' => 'Super Admin',
+            'name' => 'Admin',
             'guard_name' => 'web',
         ]);
         $role1->givePermissionTo('kelola user');
@@ -37,7 +37,7 @@ class RoleSeeder extends Seeder
         $role1->givePermissionTo('melakukan peminjaman');
 
         $role2 = Role::create([
-            'name' => 'Admin',
+            'name' => 'Pegawai',
             'guard_name' => 'web',
         ]);
         $role2->givePermissionTo('kelola buku');

@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'List Admin')
+@section('title', 'List Pegawai')
 
 @section('content_header')
-    <h1>List Admin</h1>
+    <h1>List Pegawai</h1>
 @stop
 
 @section('plugins.Datatables', true)

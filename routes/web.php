@@ -7,6 +7,7 @@ use App\Http\Controllers\AutoCompleteController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriBukuController;
+use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PinjamController;
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
@@ -50,6 +51,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('admin/kelola/users/admin/edit/{id}', [AdminController::class, 'edit_index'])->name('edit.index.user.admin');
         Route::post('admin/kelola/users/admin/edit/{id}/post', [AdminController::class, 'edit'])->name('edit.post.user.admin');
         Route::get('admin/kelola/users/admin/hapus/{id}', [AdminController::class, 'hapus'])->name('hapus.user.admin');
+        // Kelola Pegawai
+        Route::get('admin/kelola/users/pegawai', [PegawaiController::class, 'index'])->name('index.user.pegawai');
+        Route::get('admin/kelola/users/pegawai/tambah', [PegawaiController::class, 'tambah_index'])->name('tambah.index.user.pegawai');
+        Route::post('admin/kelola/users/pegawai/tambah/post', [PegawaiController::class, 'tambah'])->name('tambah.post.user.pegawai');
+        Route::get('admin/kelola/users/pegawai/edit/{id}', [PegawaiController::class, 'edit_index'])->name('edit.index.user.pegawai');
+        Route::post('admin/kelola/users/pegawai/edit/{id}/post', [PegawaiController::class, 'edit'])->name('edit.post.user.pegawai');
+        Route::get('admin/kelola/users/pegawai/hapus/{id}', [PegawaiController::class, 'hapus'])->name('hapus.user.pegawai');
         // Kelola Anggota
         Route::get('admin/kelola/users/anggota', [AnggotaController::class, 'index'])->name('index.user.anggota');
         Route::get('admin/kelola/users/anggota/tambah', [AnggotaController::class, 'tambah_index'])->name('tambah.index.user.anggota');

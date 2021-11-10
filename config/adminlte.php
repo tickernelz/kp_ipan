@@ -246,7 +246,10 @@ return [
             'url' => 'admin/home',
             'icon' => 'far fa-fw fa-file',
         ],
-        ['header' => 'KELOLA PENGGUNA'],
+        [
+            'header' => 'KELOLA PENGGUNA',
+            'can' => 'kelola user',
+        ],
         [
             'text' => 'Admin',
             'icon' => 'fas fa-fw fa-user-lock',
@@ -259,6 +262,21 @@ return [
                 [
                     'text' => 'Tambah Admin',
                     'url' => 'admin/kelola/users/admin/tambah',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Pegawai',
+            'icon' => 'fas fa-fw fa-user-tie',
+            'can' => 'kelola user',
+            'submenu' => [
+                [
+                    'text' => 'List Pegawai',
+                    'url' => 'admin/kelola/users/pegawai',
+                ],
+                [
+                    'text' => 'Tambah Pegawai',
+                    'url' => 'admin/kelola/users/pegawai/tambah',
                 ],
             ],
         ],
@@ -277,7 +295,10 @@ return [
                 ],
             ],
         ],
-        ['header' => 'KELOLA BUKU'],
+        [
+            'header' => 'KELOLA BUKU',
+            'can' => 'kelola kategori buku',
+        ],
         [
             'text' => 'Kategori',
             'icon' => 'fas fa-fw fa-boxes',
@@ -308,7 +329,10 @@ return [
                 ],
             ],
         ],
-        ['header' => 'KELOLA TRANSAKSI'],
+        [
+            'header' => 'KELOLA TRANSAKSI',
+            'can' => 'kelola transaksi',
+        ],
         [
             'text' => 'Transaksi',
             'icon' => 'fas fa-fw fa-retweet',
