@@ -251,21 +251,6 @@ return [
             'can' => 'kelola user',
         ],
         [
-            'text' => 'Admin',
-            'icon' => 'fas fa-fw fa-user-lock',
-            'can' => 'kelola user',
-            'submenu' => [
-                [
-                    'text' => 'List Admin',
-                    'url' => 'admin/kelola/users/admin',
-                ],
-                [
-                    'text' => 'Tambah Admin',
-                    'url' => 'admin/kelola/users/admin/tambah',
-                ],
-            ],
-        ],
-        [
             'text' => 'Pegawai',
             'icon' => 'fas fa-fw fa-user-tie',
             'can' => 'kelola user',

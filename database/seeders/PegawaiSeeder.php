@@ -15,10 +15,10 @@ class PegawaiSeeder extends Seeder
     public function run()
     {
         Pegawai::create([
-            'user_id' => '2',
-            'nip' => '4324352',
-            'nama' => 'Yanto',
-            'hp' => '08123452678',
+            'user_id' => '1',
+            'nip' => '432435',
+            'nama' => 'Ipandri',
+            'hp' => '08123345678',
         ]);
     }
 }

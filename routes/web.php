@@ -45,13 +45,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('admin/home', [HomeController::class, 'index'])->name('admin.home');
     // Kelola User
     Route::group(['middleware' => ['can:kelola user']], function () {
-        // Kelola Admin
-        Route::get('admin/kelola/users/admin', [AdminController::class, 'index'])->name('index.user.admin');
-        Route::get('admin/kelola/users/admin/tambah', [AdminController::class, 'tambah_index'])->name('tambah.index.user.admin');
-        Route::post('admin/kelola/users/admin/tambah/post', [AdminController::class, 'tambah'])->name('tambah.post.user.admin');
-        Route::get('admin/kelola/users/admin/edit/{id}', [AdminController::class, 'edit_index'])->name('edit.index.user.admin');
-        Route::post('admin/kelola/users/admin/edit/{id}/post', [AdminController::class, 'edit'])->name('edit.post.user.admin');
-        Route::get('admin/kelola/users/admin/hapus/{id}', [AdminController::class, 'hapus'])->name('hapus.user.admin');
         // Kelola Pegawai
         Route::get('admin/kelola/users/pegawai', [PegawaiController::class, 'index'])->name('index.user.pegawai');
         Route::get('admin/kelola/users/pegawai/tambah', [PegawaiController::class, 'tambah_index'])->name('tambah.index.user.pegawai');

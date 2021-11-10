@@ -21,11 +21,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function admin()
-    {
-        return $this->hasOne(Admin::class);
-    }
-
     public function pegawai()
     {
         return $this->hasOne(Pegawai::class);

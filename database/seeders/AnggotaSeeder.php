@@ -15,7 +15,7 @@ class AnggotaSeeder extends Seeder
     public function run()
     {
         Anggota::create([
-            'user_id' => '3',
+            'user_id' => '2',
             'nik' => '12345678',
             'email' => 'dede@gmail.com',
             'nama' => 'Dede',
