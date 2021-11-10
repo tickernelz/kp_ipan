@@ -44,7 +44,7 @@
                         </div>
                     @endif
                     @csrf
-                    <x-adminlte-input name="isbn" label="ISBN*" placeholder="Masukkan ISBN..."/>
+                    <x-adminlte-input name="isbn" type="number" label="ISBN*" placeholder="Masukkan ISBN..."/>
                     <x-adminlte-input name="judul" label="Judul Buku*" placeholder="Masukkan Kategori..."/>
                     <x-adminlte-input name="pengarang" label="Pengarang" placeholder="Masukkan Pengarang..."/>
                     <x-adminlte-input name="penerbit" label="Penerbit" placeholder="Masukkan Penerbit..."/>
@@ -55,6 +55,7 @@
                                 value="{{$list->id }}">{{ $list->nama }}</option>
                         @endforeach
                     </x-adminlte-select2>
+                    <x-adminlte-input name="jumlah" type="number" label="Jumlah*" placeholder="Masukkan Jumlah Buku..."/>
                 </div>
                 <!-- /.card-body -->
 

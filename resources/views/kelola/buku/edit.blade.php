@@ -44,10 +44,14 @@
                         </div>
                     @endif
                     @csrf
-                    <x-adminlte-input value="{{ $data->isbn }}" name="isbn" label="ISBN*" placeholder="Masukkan ISBN..."/>
-                    <x-adminlte-input value="{{ $data->judul }}" name="judul" label="Judul Buku*" placeholder="Masukkan Kategori..."/>
-                    <x-adminlte-input value="{{ $data->pengarang }}" name="pengarang" label="Pengarang" placeholder="Masukkan Pengarang..."/>
-                    <x-adminlte-input value="{{ $data->penerbit }}" name="penerbit" label="Penerbit" placeholder="Masukkan Penerbit..."/>
+                    <x-adminlte-input value="{{ $data->isbn }}" name="isbn" label="ISBN*"
+                                      placeholder="Masukkan ISBN..."/>
+                    <x-adminlte-input value="{{ $data->judul }}" name="judul" label="Judul Buku*"
+                                      placeholder="Masukkan Kategori..."/>
+                    <x-adminlte-input value="{{ $data->pengarang }}" name="pengarang" label="Pengarang"
+                                      placeholder="Masukkan Pengarang..."/>
+                    <x-adminlte-input value="{{ $data->penerbit }}" name="penerbit" label="Penerbit"
+                                      placeholder="Masukkan Penerbit..."/>
                     <x-adminlte-select2 name="kategori" label="Kategori" data-placeholder="Pilih Kategori...">
                         <option></option>
                         @foreach($kategori as $list)
@@ -56,6 +60,10 @@
                                     @endif value="{{$list->id }}">{{ $list->nama }}</option>
                         @endforeach
                     </x-adminlte-select2>
+                    <x-adminlte-input value="{{ $data->jumlah }}" name="jumlah" type="number" label="Jumlah*"
+                                      placeholder="Masukkan Jumlah Buku..."/>
+                    <x-adminlte-input value="{{ $data->stok }}" name="stok" type="number" label="Stok*"
+                                      placeholder="Masukkan Stok Buku..."/>
                 </div>
                 <!-- /.card-body -->
 

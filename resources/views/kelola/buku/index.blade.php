@@ -16,12 +16,14 @@
         'Pengarang',
         'Penerbit',
         'Kategori',
+        'Jumlah Buku',
+        'Stok',
         'Aksi',
     ];
 
 $config = [
     'order' => [[0, 'asc']],
-    'columns' => [null, null, null, null, null, null, ['orderable' => false, 'className' => 'text-center']],
+    'columns' => [null, null, null, null, null, null, null, null, ['orderable' => false, 'className' => 'text-center']],
 ];
 @endphp
 
@@ -47,6 +49,8 @@ $config = [
                         @else
                             <td>Kosong</td>
                         @endif
+                        <td>{!! $li->jumlah !!}</td>
+                        <td>{!! $li->stok !!}</td>
                         <td>
                             <div class="btn-group btn-group-sm" role="group">
                                 <a type="button" class="btn btn-secondary"

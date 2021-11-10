@@ -48,6 +48,7 @@ class BukuController extends Controller
             'pengarang' => 'string|nullable',
             'penerbit' => 'string|nullable',
             'kategori' => 'string|nullable',
+            'jumlah' => 'numeric|nullable',
         ]);
 
         // Kirim Data ke Database
@@ -57,6 +58,8 @@ class BukuController extends Controller
         $data->pengarang = $request->input('pengarang');
         $data->penerbit = $request->input('penerbit');
         $data->kategori_buku_id = $request->input('kategori');
+        $data->jumlah = $request->input('jumlah');
+        $data->stok = $request->input('jumlah');
         $data->save();
 
         return back()->with('success', 'Data Berhasil Ditambahkan!');
@@ -72,6 +75,8 @@ class BukuController extends Controller
             'pengarang' => 'string|nullable',
             'penerbit' => 'string|nullable',
             'kategori' => 'string|nullable',
+            'jumlah' => 'numeric|nullable',
+            'stok' => 'numeric|nullable',
         ]);
 
         // Edit Data
@@ -80,6 +85,8 @@ class BukuController extends Controller
         $data->pengarang = $request->input('pengarang');
         $data->penerbit = $request->input('penerbit');
         $data->kategori_buku_id = $request->input('kategori');
+        $data->jumlah = $request->input('jumlah');
+        $data->stok = $request->input('stok');
         $data->save();
 
         return back()->with('success', 'Data Berhasil Diubah!');

@@ -20,6 +20,8 @@ class CreateBukusTable extends Migration
             $table->string('judul');
             $table->string('pengarang')->nullable();
             $table->string('penerbit')->nullable();
+            $table->integer('jumlah')->nullable();
+            $table->integer('stok')->nullable();
             $table->foreignIdFor(KategoriBuku::class)->nullable();
             $table->timestamps();
         });
