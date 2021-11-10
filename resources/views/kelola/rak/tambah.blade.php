@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Tambah Kategori Buku')
+@section('title', 'Tambah Rak')
 
 @section('content_header')
-    <h1>Tambah Kategori Buku</h1>
+    <h1>Tambah Rak</h1>
 @stop
 
 @section('plugins.Select2', true)
@@ -15,7 +15,7 @@
                 <h3 class="card-title p-3">Form Tambah</h3>
                 <ul class="nav nav-pills ml-auto p-2">
                     <li class="nav-item">
-                        <a href="{{ redirect()->getUrlGenerator()->route('index.kategori') }}">
+                        <a href="{{ redirect()->getUrlGenerator()->route('index.rak') }}">
                             <button type="button" class="btn btn-primary">Kembali</button>
                         </a>
                     </li>
@@ -44,14 +44,7 @@
                         </div>
                     @endif
                     @csrf
-                    <x-adminlte-select2 name="rak" label="Rak*" data-placeholder="Pilih Rak...">
-                        <option></option>
-                        @foreach($rak as $list)
-                            <option
-                                value="{{$list->id }}">{{ $list->nomor }}</option>
-                        @endforeach
-                    </x-adminlte-select2>
-                    <x-adminlte-input name="nama" label="Nama Kategori*" placeholder="Masukkan Nama Kategori..."/>
+                    <x-adminlte-input name="nomor" type="number" label="Nomor Rak*" placeholder="Masukkan Nomor Rak..."/>
                 </div>
                 <!-- /.card-body -->
 

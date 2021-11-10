@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriBukuController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PinjamController;
+use App\Http\Controllers\RakController;
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
@@ -66,17 +67,23 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('admin/kelola/users/anggota/edit/{id}/post', [AnggotaController::class, 'edit'])->name('edit.post.user.anggota');
         Route::get('admin/kelola/users/anggota/hapus/{id}', [AnggotaController::class, 'hapus'])->name('hapus.user.anggota');
     });
-    // Kelola Kategori Buku
-    Route::group(['middleware' => ['can:kelola kategori buku']], function () {
+
+    Route::group(['middleware' => ['can:kelola buku']], function () {
+        // Kelola Rak
+        Route::get('admin/kelola/rak', [RakController::class, 'index'])->name('index.rak');
+        Route::get('admin/kelola/rak/tambah', [RakController::class, 'tambah_index'])->name('tambah.index.rak');
+        Route::post('admin/kelola/rak/tambah/post', [RakController::class, 'tambah'])->name('tambah.post.rak');
+        Route::get('admin/kelola/rak/edit/{id}', [RakController::class, 'edit_index'])->name('edit.index.rak');
+        Route::post('admin/kelola/rak/edit/{id}/post', [RakController::class, 'edit'])->name('edit.post.rak');
+        Route::get('admin/kelola/rak/hapus/{id}', [RakController::class, 'hapus'])->name('hapus.rak');
+        // Kelola Kategori Buku
         Route::get('admin/kelola/kategori', [KategoriBukuController::class, 'index'])->name('index.kategori');
         Route::get('admin/kelola/kategori/tambah', [KategoriBukuController::class, 'tambah_index'])->name('tambah.index.kategori');
         Route::post('admin/kelola/kategori/tambah/post', [KategoriBukuController::class, 'tambah'])->name('tambah.post.kategori');
         Route::get('admin/kelola/kategori/edit/{id}', [KategoriBukuController::class, 'edit_index'])->name('edit.index.kategori');
         Route::post('admin/kelola/kategori/edit/{id}/post', [KategoriBukuController::class, 'edit'])->name('edit.post.kategori');
         Route::get('admin/kelola/kategori/hapus/{id}', [KategoriBukuController::class, 'hapus'])->name('hapus.kategori');
-    });
-    // Kelola Buku
-    Route::group(['middleware' => ['can:kelola buku']], function () {
+        // Kelola Buku
         Route::get('admin/kelola/buku', [BukuController::class, 'index'])->name('index.buku');
         Route::get('admin/kelola/buku/tambah', [BukuController::class, 'tambah_index'])->name('tambah.index.buku');
         Route::post('admin/kelola/buku/tambah/post', [BukuController::class, 'tambah'])->name('tambah.post.buku');

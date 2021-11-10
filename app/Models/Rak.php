@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class KategoriBuku extends Model
+class Rak extends Model
 {
     use HasFactory;
 
@@ -13,13 +13,8 @@ class KategoriBuku extends Model
         'id',
     ];
 
-    public function rak()
+    public function kategori_buku()
     {
-        return $this->belongsTo(Rak::class);
-    }
-
-    public function buku()
-    {
-        return $this->hasMany(Buku::class);
+        return $this->belongsTo(KategoriBuku::class);
     }
 }

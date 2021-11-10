@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'List Kategori Buku')
+@section('title', 'List Rak')
 
 @section('content_header')
-    <h1>List Kategori Buku</h1>
+    <h1>List Rak</h1>
 @stop
 
 @section('plugins.Datatables', true)
@@ -12,13 +12,12 @@
     $heads = [
         '#',
         'Nomor Rak',
-        'Nama Kategori Buku',
         'Aksi',
     ];
 
 $config = [
     'order' => [[0, 'asc']],
-    'columns' => [null, null, null, ['orderable' => false, 'className' => 'text-center']],
+    'columns' => [null, null, ['orderable' => false, 'className' => 'text-center']],
 ];
 @endphp
 
@@ -35,8 +34,7 @@ $config = [
                 @foreach($data as $li)
                     <tr>
                         <td>{!! $loop->iteration !!}</td>
-                        <td>{!! $li->rak->nomor !!}</td>
-                        <td>{!! $li->nama !!}</td>
+                        <td>{!! $li->nomor !!}</td>
                         <td>
                             <div class="btn-group btn-group-sm" role="group">
                                 <a type="button" class="btn btn-secondary"

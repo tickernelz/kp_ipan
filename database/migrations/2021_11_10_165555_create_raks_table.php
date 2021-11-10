@@ -1,12 +1,10 @@
 <?php
 
-use App\Models\KategoriBuku;
-use App\Models\Rak;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKategoriBukusTable extends Migration
+class CreateRaksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,10 +13,9 @@ class CreateKategoriBukusTable extends Migration
      */
     public function up()
     {
-        Schema::create('kategori_bukus', function (Blueprint $table) {
+        Schema::create('raks', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Rak::class);
-            $table->string('nama');
+            $table->string('nomor');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateKategoriBukusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kategori_bukus');
+        Schema::dropIfExists('raks');
     }
 }

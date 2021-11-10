@@ -297,12 +297,27 @@ return [
         ],
         [
             'header' => 'KELOLA BUKU',
-            'can' => 'kelola kategori buku',
+            'can' => 'kelola buku',
+        ],
+        [
+            'text' => 'Rak',
+            'icon' => 'fas fa-fw fa-archive',
+            'can' => 'kelola buku',
+            'submenu' => [
+                [
+                    'text' => 'List Rak',
+                    'url' => 'admin/kelola/rak',
+                ],
+                [
+                    'text' => 'Tambah Rak',
+                    'url' => 'admin/kelola/rak/tambah',
+                ],
+            ],
         ],
         [
             'text' => 'Kategori',
             'icon' => 'fas fa-fw fa-boxes',
-            'can' => 'kelola kategori buku',
+            'can' => 'kelola buku',
             'submenu' => [
                 [
                     'text' => 'List Kategori',
