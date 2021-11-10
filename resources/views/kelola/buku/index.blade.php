@@ -42,7 +42,11 @@ $config = [
                         <td>{!! $li->judul !!}</td>
                         <td>{!! $li->pengarang !!}</td>
                         <td>{!! $li->penerbit !!}</td>
-                        <td>{!! $li->kategori_buku->nama !!}</td>
+                        @if ($li->kategori_buku !== null)
+                            <td>{!! $li->kategori_buku->nama !!}</td>
+                        @else
+                            <td>Kosong</td>
+                        @endif
                         <td>
                             <div class="btn-group btn-group-sm" role="group">
                                 <a type="button" class="btn btn-secondary"
