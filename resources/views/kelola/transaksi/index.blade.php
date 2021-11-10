@@ -35,7 +35,7 @@ $config = [
                 $tanggal = new \Carbon\Carbon($tanggal);
                 $now = \Carbon\Carbon::now();
                 $difference = $tanggal->diffInDays($now);
-                return ''.($difference+1).' Hari';
+                return ''.($difference).' Hari';
             } else {
                 return '0 Hari';
             }
