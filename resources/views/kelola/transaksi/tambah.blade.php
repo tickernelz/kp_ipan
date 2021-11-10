@@ -52,8 +52,13 @@
                                 value="{{$list->id }}">{{ $list->nama }}</option>
                         @endforeach
                     </x-adminlte-select2>
-                    <x-adminlte-input name="isbn" id="isbn" type="number" label="ISBN*" placeholder="Masukkan ISBN..."/>
-                    <x-adminlte-input name="buku" id="buku" label="Buku" placeholder="Masukkan Buku..."/>
+                    <x-adminlte-select2 name="buku" label="Buku*" data-placeholder="Pilih Buku...">
+                        <option></option>
+                        @foreach($buku as $list)
+                            <option
+                                value="{{$list->id }}">{{ $list->judul }} ({{ $list->isbn }})</option>
+                        @endforeach
+                    </x-adminlte-select2>
                     <x-adminlte-input-date name="tanggal_pinjam" :config="$conf_tgl"
                                            placeholder="Masukkan Tanggal Pinjam..."
                                            label="Tanggal Pinjam*">
@@ -72,6 +77,8 @@
                             </div>
                         </x-slot>
                     </x-adminlte-input-date>
+                    <x-adminlte-input name="jumlah" id="jumlah" type="number" label="Jumlah*"
+                                      placeholder="Masukkan Jumlah Yang Dipinjam..."/>
                     <x-adminlte-select2 name="status" label="Status*" data-placeholder="Pilih Status...">
                         <option></option>
                         <option value="pinjam">Pinjam</option>

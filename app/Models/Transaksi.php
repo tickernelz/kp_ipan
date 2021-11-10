@@ -22,4 +22,9 @@ class Transaksi extends Model
     {
         return $this->belongsTo(Anggota::class);
     }
+
+    public function buku()
+    {
+        return $this->belongsTo(Buku::class);
+    }
 }

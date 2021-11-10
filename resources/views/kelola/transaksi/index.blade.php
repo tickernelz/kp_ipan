@@ -17,13 +17,14 @@
         'Tanggal Pinjam',
         'Tanggal Kembali',
         'Status',
+        'Jumlah Pinjam',
         'Terlambat',
         'Aksi',
     ];
 
 $config = [
     'order' => [[0, 'asc']],
-    'columns' => [null, null, null, null, null, null, null, ['orderable' => false], ['orderable' => false, 'className' => 'text-center']],
+    'columns' => [null, null, null, null, null, null, null, null, ['orderable' => false], ['orderable' => false, 'className' => 'text-center']],
 ];
 @endphp
 
@@ -57,11 +58,12 @@ $config = [
                     <tr>
                         <td>{!! $loop->iteration !!}</td>
                         <td>{!! $li->anggota->nama !!} ({!! $li->anggota->nik !!})</td>
-                        <td>{!! $li->isbn !!}</td>
-                        <td>{!! $li->buku !!}</td>
+                        <td>{!! $li->buku->isbn !!}</td>
+                        <td>{!! $li->buku->judul !!}</td>
                         <td>{!! \Carbon\Carbon::parse($li->tanggal_pinjam)->formatLocalized('%d %B %Y') !!}</td>
                         <td>{!! \Carbon\Carbon::parse($li->tanggal_kembali)->formatLocalized('%d %B %Y') !!}</td>
                         <td>{!! $li->status !!}</td>
+                        <td>{!! $li->jumlah !!}</td>
                         <td>{!! terlambat($li->tanggal_kembali) !!}</td>
                         <td>
                             <div class="btn-group btn-group-sm" role="group">
