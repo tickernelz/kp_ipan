@@ -20,9 +20,7 @@ class PegawaiController extends Controller
 
     public function tambah_index()
     {
-
         return view('kelola.users.pegawai.tambah', [
-            'roles' => $roles,
         ]);
     }
 
