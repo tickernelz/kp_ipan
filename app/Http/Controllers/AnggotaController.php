@@ -89,7 +89,7 @@ class AnggotaController extends Controller
         $data->email = $request->input('email');
         $data->hp = $request->input('hp');
         $data->user->username = $request->input('username');
-        if ($data->user->password !== bcrypt($request->input('password'))) {
+        if ($data->user->password !== $request->input('password')) {
             $data->user->password = bcrypt($request->input('password'));
         }
         $data->user->save();
