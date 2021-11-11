@@ -2,26 +2,11 @@
 
 @inject('layoutHelper', 'JeroenNoten\LaravelAdminLte\Helpers\LayoutHelper')
 
-@section('title_prefix', 'Pinjam Buku')
+@section('title_prefix', 'List Buku')
 @section('title', '|')
 @section('title_postfix', 'PERPUSTAKAAN')
 
 @section('plugins.Datatables', true)
-
-@php
-    function terlambat($tanggal)
-        {
-            if (\Carbon\Carbon::now() > $tanggal)
-                {
-                    $tanggal = new \Carbon\Carbon($tanggal);
-                    $now = \Carbon\Carbon::now();
-                    $difference = $tanggal->diffInDays($now);
-                    return ''.($difference+1).' Hari';
-                } else {
-                    return '0 Hari';
-                }
-        }
-@endphp
 
 @section('classes_body', $layoutHelper->makeBodyClasses())
 
@@ -34,15 +19,14 @@
             <div class="wrap-pinjam p-l-55 p-r-55 p-t-80 p-b-30">
                 <form class="login100-form validate-form">
 				<span class="login100-form-title p-b-37">
-					Halo, {{ $anggota->nama }}
+					Halo, {{ $user->nama }}
 				</span>
 
                     <div class="text-center p-t-0 p-b-20">
 					<span class="txt1">
-						Daftar Peminjaman
+						List Buku
 					</span>
                     </div>
-
                     @if (Session::has('success'))
                         <div class="alert alert-success alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -61,30 +45,42 @@
                             </ul>
                         </div>
                     @endif
-                    <x-adminlte-datatable id="table" :config="$config" :heads="$heads" hoverable bordered beautify>
-                        @foreach($data as $li)
+                    <div class="table-responsive">
+                        <table id="table" style="width:100%" class="table text-center table-bordered table-hover">
+                            <thead>
                             <tr>
-                                <td>{!! $loop->iteration !!}</td>
-                                <td>{!! $li->isbn !!}</td>
-                                <td>{!! $li->buku !!}</td>
-                                <td>{!! \Carbon\Carbon::parse($li->tanggal_pinjam)->formatLocalized('%d %B %Y') !!}</td>
-                                <td>{!! \Carbon\Carbon::parse($li->tanggal_kembali)->formatLocalized('%d %B %Y') !!}</td>
-                                <td>{!! $li->status !!}</td>
-                                <td>{!! terlambat($li->tanggal_kembali) !!}</td>
-                                <td>
-                                    @if($li->status !== 'Kembali')
-                                        <a type="button" class="btn btn-sm btn-secondary"
-                                           href="{{ Request::url() }}/kembali/{{$li->id}}"
-                                           onclick="return confirm('Yakin Mau Dikembalikan?');">
-                                            Kembalikan
-                                        </a>
-                                    @else
-                                        <span>Sudah Dikembalikan</span>
-                                    @endif
-                                </td>
+                                <th>#</th>
+                                <th>ISBN</th>
+                                <th>Judul Buku</th>
+                                <th>No Rak</th>
+                                <th>Kategori</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
                             </tr>
-                        @endforeach
-                    </x-adminlte-datatable>
+                            </thead>
+                            <tbody>
+                            @foreach($data as $li)
+                                @if($data !== null)
+                                    <tr>
+                                        <td>{!! $loop->iteration !!}</td>
+                                        <td>{!! $li->buku->isbn !!}</td>
+                                        <td>{!! $li->buku->judul !!}</td>
+                                        <td>{!! $li->buku->kategori_buku->rak->nomor !!}</td>
+                                        <td>{!! $li->buku->kategori_buku->nama !!}</td>
+                                        <td>{!! $li->status !!}</td>
+                                        <td>
+                                            <a type="button" class="btn btn-sm btn-danger"
+                                               href="{{ Request::url() }}/cancel/{{$li->id}}"
+                                               onclick="return confirm('Yakin Mau Dicancel?');">
+                                                Cancel
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
 
                     <div class="text-center p-t-20">
                         <a href="{{ route('get.logout') }}" class="txt2 hov1">
@@ -123,50 +119,8 @@
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
     <script type="text/javascript">
-        const route_buku = "{{ url('auto-buku') }}";
-        const route_isbn = "{{ url('auto-isbn') }}";
-
-        $("#tanggal_kembali").datepicker({
-            //Datepicker settings
-            language: 'id',
-            format: "yyyy-mm-dd",
-            startDate: "0d",
-            endDate: "+14d",
-            clearBtn: true,
-            todayBtn: true,
-            todayHighlight: true
-        });
-
-        $('#buku').typeahead({
-            source: function (query, process) {
-                return $.get(route_buku, {
-                    buku: query,
-                    classNames: {
-                        input: 'Typeahead-input',
-                        hint: 'Typeahead-hint',
-                        selectable: 'Typeahead-selectable'
-                    }
-                }, function (d) {
-                    console.log(d)
-                    return process(d);
-                });
-            }
-        });
-
-        $('#isbn').typeahead({
-            source: function (query, process) {
-                return $.get(route_isbn, {
-                    isbn: query,
-                    classNames: {
-                        input: 'Typeahead-input',
-                        hint: 'Typeahead-hint',
-                        selectable: 'Typeahead-selectable'
-                    }
-                }, function (d) {
-                    console.log(d)
-                    return process(d);
-                });
-            }
+        $(document).ready(function () {
+            $('#table').DataTable();
         });
     </script>
 @endsection

@@ -2,87 +2,57 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Transaksi;
+use App\Models\Booking;
+use App\Models\Buku;
 use Auth;
-use Illuminate\Http\Request;
 
 class PinjamController extends Controller
 {
     public function index()
     {
-        // Config
-        $conf_tgl = [
-            'format' => 'DD MMMM YYYY',
-            'locale' => 'id',
-            'minDate' => "js:moment().startOf('day')",
-        ];
-
         // Get Data
         $anggota = Auth::user()->anggota;
+        $data = Buku::with('kategori_buku')->get();
+        $booking = Booking::with('anggota','buku')->where('anggota_id', $anggota->id)->get();
 
-        return view('pinjam.index', [
-            'anggota' => $anggota,
-            'conf_tgl' => $conf_tgl,
-        ]);
-    }
-
-    public function list()
-    {
-        // Get Data
-        $anggota = Auth::user()->anggota;
-        $data = Transaksi::with('anggota')->where('anggota_id', $anggota->id)->get();
-
-        $heads = [
-            '#',
-            'ISBN',
-            'Judul Buku',
-            'Tanggal Pinjam',
-            'Tanggal Kembali',
-            'Status',
-            'Terlambat',
-            'Aksi',
-        ];
-
-        $config = [
-            'order' => [[0, 'asc']],
-            'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
-        ];
-
-        return view('pinjam.pinjam', [
+        return view('anggota.index', [
             'data' => $data,
+            'booking' => $booking,
             'anggota' => $anggota,
-            'heads' => $heads,
-            'config' => $config,
         ]);
     }
 
-    public function pinjam(Request $request)
+    public function tambah(int $id_buku)
     {
-        $request->validate([
-            'isbn' => 'required|numeric',
-            'buku' => 'string|nullable',
-            'tanggal_kembali' => 'required|string',
-        ]);
-
         // Kirim Data ke Database
-        $data = new Transaksi;
+        $data = new Booking;
         $data->anggota_id = Auth::user()->anggota->id;
-        $data->isbn = $request->input('isbn');
-        $data->buku = $request->input('buku');
-        $data->tanggal_pinjam = now();
-        $data->tanggal_kembali = $request->input('tanggal_kembali');
-        $data->status = 'Pinjam';
+        $data->buku_id = $id_buku;
+        $data->status = 'Menunggu';
         $data->save();
 
-        return back()->with('success', 'Data Berhasil Ditambahkan!');
+        return back()->with('success', 'Buku Berhasil Dibooking!');
     }
 
-    public function kembali(int $id)
+    public function cancel(int $id)
     {
-        $data = Transaksi::find($id);
-        $data->status = 'Kembali';
-        $data->save();
+        // Hapus Data
+        Booking::find($id)->delete();
 
-        return redirect()->route('list.pinjam');
+        return back()->with('success', 'Booking Berhasil Dicancel!');
+    }
+
+    public function index_booking()
+    {
+        //User
+        $user = Auth::user()->anggota;
+
+        // Get Data
+        $data = Booking::with('anggota','buku')->where('anggota_id', $user->id)->get();
+
+        return view('anggota.booking', [
+            'data' => $data,
+            'user' => $user,
+        ]);
     }
 }

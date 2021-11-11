@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AutoCompleteController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriBukuController;
@@ -84,8 +85,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('admin/kelola/buku/edit/{id}/post', [BukuController::class, 'edit'])->name('edit.post.buku');
         Route::get('admin/kelola/buku/hapus/{id}', [BukuController::class, 'hapus'])->name('hapus.buku');
     });
-    // Kelola Transaksi
     Route::group(['middleware' => ['can:kelola transaksi']], function () {
+        // Kelola Transaksi
         Route::get('admin/kelola/transaksi', [TransaksiController::class, 'index'])->name('index.transaksi');
         Route::get('admin/kelola/transaksi/tambah', [TransaksiController::class, 'tambah_index'])->name('tambah.index.transaksi');
         Route::post('admin/kelola/transaksi/tambah/post', [TransaksiController::class, 'tambah'])->name('tambah.post.transaksi');
@@ -93,13 +94,18 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('admin/kelola/transaksi/edit/{id}/post', [TransaksiController::class, 'edit'])->name('edit.post.transaksi');
         Route::get('admin/kelola/transaksi/hapus/{id}', [TransaksiController::class, 'hapus'])->name('hapus.transaksi');
         Route::get('admin/kelola/transaksi/kembali/{id}', [TransaksiController::class, 'kembali'])->name('kembali.transaksi');
+        // Kelola Booking
+        Route::get('admin/kelola/booking', [BookingController::class, 'index'])->name('index.booking');
+        Route::get('admin/kelola/booking/terima/{id}', [BookingController::class, 'terima'])->name('terima.booking');
+        Route::get('admin/kelola/booking/tolak/{id}', [BookingController::class, 'tolak'])->name('tolak.booking');
+        Route::get('admin/kelola/booking/hapus/{id}', [BookingController::class, 'hapus'])->name('hapus.booking');
     });
 
     Route::group(['middleware' => ['can:melakukan peminjaman']], function () {
         Route::get('pinjam/', [PinjamController::class, 'index'])->name('index.pinjam');
-        Route::post('pinjam/post', [PinjamController::class, 'pinjam'])->name('post.pinjam');
-        Route::get('pinjam/list', [PinjamController::class, 'list'])->name('list.pinjam');
-        Route::get('pinjam/list/kembali/{id}', [PinjamController::class, 'kembali'])->name('kembali.pinjam');
+        Route::get('pinjam/booking', [PinjamController::class, 'index_booking'])->name('index.booking.pinjam');
+        Route::get('pinjam/booking/cancel/{id}', [PinjamController::class, 'cancel'])->name('cancel.booking.pinjam');
+        Route::get('pinjam/tambah/{id_buku}', [PinjamController::class, 'tambah'])->name('tambah.pinjam');
     });
 });
 // Logout

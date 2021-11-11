@@ -334,6 +334,17 @@ return [
             'can' => 'kelola transaksi',
         ],
         [
+            'text' => 'Booking',
+            'icon' => 'fas fa-fw fa-bookmark',
+            'can' => 'kelola transaksi',
+            'submenu' => [
+                [
+                    'text' => 'List Booking',
+                    'url' => 'admin/kelola/booking',
+                ],
+            ],
+        ],
+        [
             'text' => 'Transaksi',
             'icon' => 'fas fa-fw fa-retweet',
             'can' => 'kelola transaksi',
