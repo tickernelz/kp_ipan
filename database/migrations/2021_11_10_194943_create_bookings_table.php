@@ -19,7 +19,7 @@ class CreateBookingsTable extends Migration
             $table->id();
             $table->foreignIdFor(Anggota::class);
             $table->foreignIdFor(Buku::class);
-            $table->enum('status', ['Tersedia','Menunggu','Tidak Tersedia']);
+            $table->enum('status', ['Tersedia', 'Menunggu', 'Tidak Tersedia']);
             $table->timestamps();
         });
     }

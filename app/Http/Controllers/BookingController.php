@@ -9,7 +9,7 @@ class BookingController extends Controller
     public function index()
     {
         // Get Data
-        $data = Booking::with('anggota','buku')->get();
+        $data = Booking::with('anggota', 'buku')->get();
 
         return view('kelola.booking.index', [
             'data' => $data,

@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\KategoriBuku;
 use App\Models\Rak;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

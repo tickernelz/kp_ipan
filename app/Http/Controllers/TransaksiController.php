@@ -13,7 +13,7 @@ class TransaksiController extends Controller
     public function index()
     {
         // Get Data
-        $data = Transaksi::with('anggota','buku')->get();
+        $data = Transaksi::with('anggota', 'buku')->get();
 
         return view('kelola.transaksi.index', [
             'data' => $data,
@@ -50,7 +50,7 @@ class TransaksiController extends Controller
         ];
 
         // Get Data
-        $data = Transaksi::with('anggota','buku')->find($id);
+        $data = Transaksi::with('anggota', 'buku')->find($id);
         $anggota = Anggota::get();
         $buku = Buku::get();
 
@@ -139,8 +139,7 @@ class TransaksiController extends Controller
     {
         $data = Transaksi::find($id);
 
-        if($data->status !== 'Kembali')
-        {
+        if ($data->status !== 'Kembali') {
             // Kembalikan Stok Buku
             $buku = Buku::whereId($data->buku_id)->first();
             $buku->stok += ($data->jumlah);

@@ -13,7 +13,7 @@ class PinjamController extends Controller
         // Get Data
         $anggota = Auth::user()->anggota;
         $data = Buku::with('kategori_buku')->get();
-        $booking = Booking::with('anggota','buku')->where('anggota_id', $anggota->id)->get();
+        $booking = Booking::with('anggota', 'buku')->where('anggota_id', $anggota->id)->get();
 
         return view('anggota.index', [
             'data' => $data,
@@ -48,7 +48,7 @@ class PinjamController extends Controller
         $user = Auth::user()->anggota;
 
         // Get Data
-        $data = Booking::with('anggota','buku')->where('anggota_id', $user->id)->get();
+        $data = Booking::with('anggota', 'buku')->where('anggota_id', $user->id)->get();
 
         return view('anggota.booking', [
             'data' => $data,
