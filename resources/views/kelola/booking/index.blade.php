@@ -40,11 +40,11 @@ $config = [
                     <tr>
                         <td>{!! $loop->iteration !!}</td>
                         <td>{!! $li->anggota->nama !!}</td>
-                        <td>{!! $li->buku->isbn !!}</td>
-                        <td>{!! $li->buku->judul !!}</td>
-                        <td>{!! $li->buku->kategori_buku->rak->nomor !!}</td>
-                        <td>{!! $li->buku->kategori_buku->nama !!}</td>
-                        <td>{!! $li->status !!}</td>
+                        <td>{!! $li->buku->isbn ?? '' !!}</td>
+                        <td>{!! $li->buku->judul ?? '' !!}</td>
+                        <td>{!! $li->buku->kategori_buku->rak->nomor ?? '' !!}</td>
+                        <td>{!! $li->buku->kategori_buku->nama ?? ''  !!}</td>
+                        <td>{!! $li->status ?? '' !!}</td>
                         <td>
                             <div class="btn-group btn-group-sm" role="group">
                                 <a type="button" class="btn btn-success"
