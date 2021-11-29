@@ -81,8 +81,8 @@
                                       placeholder="Masukkan Jumlah Yang Dipinjam..."/>
                     <x-adminlte-select2 name="status" label="Status*" data-placeholder="Pilih Status...">
                         <option></option>
-                        <option value="pinjam">Pinjam</option>
-                        <option value="kembali">Kembali</option>
+                        <option value="Pinjam">Pinjam</option>
+                        <option value="Kembali">Kembali</option>
                     </x-adminlte-select2>
                 </div>
                 <!-- /.card-body -->
