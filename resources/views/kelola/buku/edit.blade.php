@@ -23,7 +23,7 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form action="{{url()->current()}}/post" method="post">
+            <form action="{{url()->current()}}/post" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                     @if (Session::has('success'))
                         <div class="alert alert-success alert-dismissible">
@@ -64,6 +64,15 @@
                                       placeholder="Masukkan Jumlah Buku..."/>
                     <x-adminlte-input value="{{ $data->stok }}" name="stok" type="number" label="Stok*"
                                       placeholder="Masukkan Stok Buku..."/>
+                    @if($data->gambar)
+                        <x-adminlte-input-file name="gambar" label="Upload Cover Buku"
+                                               placeholder="{{ old('gambar') ?? $data->gambar }}"
+                                               disable-feedback/>
+                    @else
+                        <x-adminlte-input-file name="gambar" label="Upload Cover Buku" placeholder="Pilih Gambar..."
+                                               disable-feedback/>
+                    @endif
+                    <x-adminlte-input value="{{ $data->operator }}" name="operator" label="Operator" readonly/>
                 </div>
                 <!-- /.card-body -->
 

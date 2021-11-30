@@ -50,6 +50,7 @@
                             <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Cover</th>
                                 <th>ISBN</th>
                                 <th>Judul Buku</th>
                                 <th>No Rak</th>
@@ -63,6 +64,13 @@
                                 @if($data !== null)
                                     <tr>
                                         <td>{!! $loop->iteration !!}</td>
+                                        <td>
+                                            @if (isset($li->buku->gambar))
+                                                <img src="/gambar/{{$li->buku->gambar}}" width="300px" alt="cover">
+                                            @else
+                                                Tidak Ada Gambar
+                                            @endif
+                                        </td>
                                         <td>{!! $li->buku->isbn !!}</td>
                                         <td>{!! $li->buku->judul !!}</td>
                                         <td>{!! $li->buku->kategori_buku->rak->nomor !!}</td>

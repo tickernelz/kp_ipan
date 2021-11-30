@@ -49,6 +49,7 @@ class BukuController extends Controller
             'penerbit' => 'string|nullable',
             'kategori' => 'string|nullable',
             'jumlah' => 'numeric|nullable',
+            'gambar' => 'file|nullable|mimes:jpeg,jpg,bmp,png,svg',
         ]);
 
         // Kirim Data ke Database
@@ -60,6 +61,11 @@ class BukuController extends Controller
         $data->kategori_buku_id = $request->input('kategori');
         $data->jumlah = $request->input('jumlah');
         $data->stok = $request->input('jumlah');
+        if ($request->hasFile('gambar')) {
+            $fileName = time() . '_' . $request->gambar->getClientOriginalName();
+            $request->gambar->move(public_path('gambar'), $fileName);
+            $data->gambar = $fileName;
+        }
         $data->save();
 
         return back()->with('success', 'Data Berhasil Ditambahkan!');
@@ -77,6 +83,7 @@ class BukuController extends Controller
             'kategori' => 'string|nullable',
             'jumlah' => 'numeric|nullable',
             'stok' => 'numeric|nullable',
+            'gambar' => 'file|nullable|mimes:jpeg,jpg,bmp,png,svg',
         ]);
 
         // Edit Data
@@ -87,6 +94,18 @@ class BukuController extends Controller
         $data->kategori_buku_id = $request->input('kategori');
         $data->jumlah = $request->input('jumlah');
         $data->stok = $request->input('stok');
+        // Cek apakah ada berkas?
+        if ($request->hasFile('gambar')) {
+            // Hapus Berkas Lama (Jika Ada)
+            $namaberkas = $data->gambar;
+            if (is_file(public_path('gambar') . '/' . $namaberkas)) {
+                unlink(public_path('gambar') . '/' . $namaberkas);
+            }
+            // Upload File Baru
+            $fileName = time() . '_' . $request->gambar->getClientOriginalName();
+            $request->gambar->move(public_path('gambar'), $fileName);
+            $data->gambar = $fileName;
+        }
         $data->save();
 
         return back()->with('success', 'Data Berhasil Diubah!');

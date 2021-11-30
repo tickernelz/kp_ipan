@@ -7,6 +7,7 @@
 @stop
 
 @section('plugins.Select2', true)
+@section('plugins.bsCustomFileInput', true)
 
 @section('content')
     <div class="col-md-6" style="float:none;margin:auto;">
@@ -23,7 +24,7 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form action="{{url()->current()}}/post" method="post">
+            <form action="{{url()->current()}}/post" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                     @if (Session::has('success'))
                         <div class="alert alert-success alert-dismissible">
@@ -55,7 +56,10 @@
                                 value="{{$list->id }}">{{ $list->nama }}</option>
                         @endforeach
                     </x-adminlte-select2>
-                    <x-adminlte-input name="jumlah" type="number" label="Jumlah*" placeholder="Masukkan Jumlah Buku..."/>
+                    <x-adminlte-input name="jumlah" type="number" label="Jumlah*"
+                                      placeholder="Masukkan Jumlah Buku..."/>
+                    <x-adminlte-input-file name="gambar" label="Upload Cover Buku" placeholder="Pilih Gambar..."
+                                           disable-feedback/>
                 </div>
                 <!-- /.card-body -->
 

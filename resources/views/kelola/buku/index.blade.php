@@ -11,6 +11,7 @@
 @php
     $heads = [
         '#',
+        'Cover',
         'ISBN',
         'Judul Buku',
         'Pengarang',
@@ -23,7 +24,7 @@
 
 $config = [
     'order' => [[0, 'asc']],
-    'columns' => [null, null, null, null, null, null, null, null, ['orderable' => false, 'className' => 'text-center']],
+    'columns' => [null, null, null, null, null, null, null, null, null, ['orderable' => false, 'className' => 'text-center']],
 ];
 @endphp
 
@@ -40,6 +41,13 @@ $config = [
                 @foreach($data as $li)
                     <tr>
                         <td>{!! $loop->iteration !!}</td>
+                        <td>
+                            @if (isset($li->gambar))
+                                <img src="/gambar/{{$li->gambar}}" width="300px" alt="cover">
+                            @else
+                                Tidak Ada Gambar
+                            @endif
+                        </td>
                         <td>{!! $li->isbn !!}</td>
                         <td>{!! $li->judul !!}</td>
                         <td>{!! $li->pengarang !!}</td>
