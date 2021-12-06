@@ -53,7 +53,7 @@ class RakController extends Controller
         $data = Rak::find($id);
 
         $request->validate([
-            'nomor' => 'required|numeric|unique:raks,nama,'.$data->id,
+            'nomor' => 'required|numeric|unique:raks,nomor,'.$data->id,
         ]);
 
         // Edit Data
