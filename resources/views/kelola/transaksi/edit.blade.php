@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Edit Transaksi')
+@section('title_prefix', 'Edit Transaksi')
 
 @section('content_header')
     <h1>Edit Transaksi</h1>

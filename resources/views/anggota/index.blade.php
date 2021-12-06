@@ -3,8 +3,6 @@
 @inject('layoutHelper', 'JeroenNoten\LaravelAdminLte\Helpers\LayoutHelper')
 
 @section('title_prefix', 'List Buku')
-@section('title', '|')
-@section('title_postfix', 'PERPUSTAKAAN')
 
 @section('plugins.Datatables', true)
 

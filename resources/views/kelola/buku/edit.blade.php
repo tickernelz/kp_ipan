@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Edit Buku')
+@section('title_prefix', 'Edit Buku')
 
 @section('content_header')
     <h1>Edit Buku ({{ $data->judul }})</h1>

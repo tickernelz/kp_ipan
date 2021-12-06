@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'List Rak')
+@section('title_prefix', 'List Rak')
 
 @section('content_header')
     <h1>List Rak</h1>

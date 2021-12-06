@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Edit Anggota')
+@section('title_prefix', 'Edit Anggota')
 
 @section('content_header')
     <h1>Edit Anggota ({{ $data->nama }})</h1>

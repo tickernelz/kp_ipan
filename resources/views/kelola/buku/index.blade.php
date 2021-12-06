@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'List Buku')
+@section('title_prefix', 'List Buku')
 
 @section('content_header')
     <h1>List Buku</h1>

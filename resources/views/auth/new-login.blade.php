@@ -3,8 +3,6 @@
 @inject('layoutHelper', 'JeroenNoten\LaravelAdminLte\Helpers\LayoutHelper')
 
 @section('title_prefix', 'Login')
-@section('title', '|')
-@section('title_postfix', 'PERPUSTAKAAN')
 
 <body class="img js-fullheight"
       style="background-image: url(https://unsplash.com/photos/k2Kcwkandwg/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjM2NDc5ODg2&force=true&w=2400);">

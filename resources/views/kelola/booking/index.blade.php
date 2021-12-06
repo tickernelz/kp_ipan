@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'List Booking')
+@section('title_prefix', 'List Booking')
 
 @section('content_header')
     <h1>List Booking</h1>
